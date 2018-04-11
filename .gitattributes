@@ -1,2 +1,12 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+
+// Only change code below this line.
+
+var myDog = {
+  "name" : "Dogo",
+  "legs" : 4,
+  "tails" : 1,
+  "friends" : ["Humans", "food"]  
+};
