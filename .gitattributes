@@ -1,7 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-
-
 // Only change code below this line.
 
 var myDog = {
@@ -10,3 +8,9 @@ var myDog = {
   "tails" : 1,
   "friends" : ["Humans", "food"]  
 };
+
+
+
+let ohStr = "Ohhh no";
+let ohRegex = /h{3,6}\s/g; // Change this line
+let result = ohRegex.test(ohStr);
