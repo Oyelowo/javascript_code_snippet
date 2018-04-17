@@ -9,3 +9,29 @@ let acummulate=0;
   return acummulate;
 }
 
+//Diff Two Arrays
+function diffArray(arr1, arr2) {
+ return arr1.concat(arr2).filter(eachNum => !arr2.includes(eachNum) || !arr1.includes(eachNum));
+  // Same, same; but different.
+}
+
+    diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]);
+
+//Alternative
+function diffArray(arr1, arr2) {
+    return arr1
+      .filter(eachNum => !arr2.includes(eachNum))
+      .concat(
+        arr2.filter(eachNum => !arr1.includes(eachNum))
+      );
+}
+
+
+//Seek and Destroy
+function destroyer(arr) {
+  var argsCopy = Array.from(arguments).slice(1);
+  return arr.filter(function(element) {
+    return !argsCopy.includes(element);
+  });
+}
+destroyer([1, 2, 3, 1, 2, 3], 2, 3);
