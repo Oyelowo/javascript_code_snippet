@@ -1,0 +1,82 @@
+IMPLEMENT A MAP PROTOTYPE
+// the global Array
+var s = [23, 65, 98, 5];
+
+Array.prototype.myMap = function(callback){
+  var newArray = [];
+  // Add your code below this line
+  for(i=0; i<s.length; i++){
+    newArray[i] = callback(s[i]);
+  }
+  // Add your code above this line
+  return newArray;
+
+};
+
+
+var new_s = s.myMap(function(item){
+  return item * 2;
+});
+
+
+
+
+// the global Array
+var s = [23, 65, 98, 5];
+
+Array.prototype.myFilter = function(callback){
+  var newArray = [];
+  var newArray2 = [];
+  // Add your code below this line
+  for(i=0; i<s.length; i++){
+    newArray2[i]=callback(s[i])
+    if(newArray2[i]){
+      newArray.push(s[i]);
+    }
+  }
+  // Add your code above this line
+  return newArray;
+
+};
+
+var new_s = s.myFilter(function(item){
+  return item % 2 === 1;
+});
+
+console.log(new_s);
+
+
+
+
+
+
+
+//Use the reduce Method to Analyze Data
+let k=[];
+let i=0;
+while (i< watchList.length){      if(watchList[i].Director==="Christopher Nolan"){
+        k[i]=parseFloat(watchList[i].imdbRating);
+  
+  }
+    i++;                        
+  }
+let averageRating= k.reduce((a, b) => (a+b))/k.length;
+
+console.log(averageRating);
+
+
+//SPLIT AND JOIN
+// the global variable
+var globalTitle = "Winter Is Coming";
+
+// Add your code below this line
+function urlSlug(title) {
+  splitTitle = globalTitle.split(" ");
+  joinTitle = splitTitle.join("-")
+  return joinTitle.toLowerCase();
+  
+}
+// Add your code above this line
+
+var winterComing = urlSlug(globalTitle); // Should be "winter-is-coming"
+console.log(winterComing);
