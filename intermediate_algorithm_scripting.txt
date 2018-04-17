@@ -1,0 +1,11 @@
+// 1. Sum All Numbers in a Range
+
+function sumAll(arr) {
+let acummulate=0;
+  for(i=Math.min(...arr); i<Math.max(...arr) + 1; i++){
+    console.log(i);
+    acummulate += i;
+  }
+  return acummulate;
+}
+
