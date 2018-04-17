@@ -82,3 +82,27 @@ function urlSlug(title) {
 
 var winterComing = urlSlug(globalTitle); // Should be "winter-is-coming"
 console.log(winterComing); 
+
+
+function add(x) {
+  // Add your code below this line
+  return function(y) {
+  
+  return function(z){
+   return x + y + z;
+  };
+  }; 
+  // Add your code above this line
+}
+
+//Alternative
+function add(x) {
+  // Add your code below this line
+  return (y)=> {
+  return (z)=> {
+    return x + y + z;
+   };
+  };
+  // Add your code above this line
+}
+add(10)(20)(30);
