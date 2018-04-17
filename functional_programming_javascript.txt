@@ -66,17 +66,19 @@ console.log(averageRating);
 
 
 //SPLIT AND JOIN
+
 // the global variable
-var globalTitle = "Winter Is Coming";
+var globalTitle = " Winter Is  Coming";
 
 // Add your code below this line
 function urlSlug(title) {
-  splitTitle = globalTitle.split(" ");
-  joinTitle = splitTitle.join("-")
+  splitTitle = title.split(/\s+/);
+  splitFilter = splitTitle.filter(val => val!=="");
+  joinTitle = splitFilter.join("-")
   return joinTitle.toLowerCase();
   
 }
 // Add your code above this line
 
 var winterComing = urlSlug(globalTitle); // Should be "winter-is-coming"
-console.log(winterComing);
+console.log(winterComing); 
