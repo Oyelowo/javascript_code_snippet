@@ -256,3 +256,20 @@ function pairElement(str) {
 
 // test here
 pairElement("GCG");
+
+
+
+//Sorted Union
+function uniteUnique(arr) {
+  let argsArray=[];
+  for(i=0; i<arguments.length; i++){
+    //get all arguments into one array
+    argsArray = argsArray.concat(arguments[i]);
+  }
+  //filter out the repeated elements. This leverages on the fact that indexOf uses that of the first element and not the latter
+  argsArray=argsArray.filter((element, positon) => argsArray.indexOf(element)===positon);
+  return argsArray;  
+}
+
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
