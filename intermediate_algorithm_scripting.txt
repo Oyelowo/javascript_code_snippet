@@ -182,8 +182,62 @@ function pairElement(str) {
   return all;
 }
 
-
 pairElement("GCG");
+function pairElement(str) {
+  // Return each strand as an array of two elements, the original and the pair.
+  var paired = [];
+
+  // Function to check with strand to pair.
+  var search = function(char) {
+    switch (char) {
+      case 'A':
+        paired.push(['A', 'T']);
+        break;
+      case 'T':
+        paired.push(['T', 'A']);
+        break;
+      case 'C':
+        paired.push(['C', 'G']);
+        break;
+      case 'G':
+        paired.push(['G', 'C']);
+        break;
+    }
+  };
+
+  // Loops through the input and pair.
+  for (var i = 0; i < str.length; i++) {
+    search(str[i]);
+  }
+
+  return paired;
+}
+
+// test here
+pairElement("GCG");
+
+
+
+//Missing letters
+function fearNotLetter(str) {
+  /*Alphabet function by: Alireza
+  source: https://stackoverflow.com/questions/3895478/does-javascript-have-a-method-like-range-to-generate-a-range-within-the-supp. I converted to ES6 format and edited to take full range of letters*/
+  
+ alphabetRange = ((start, end) => 
+new Array(end.charCodeAt(0) - start.charCodeAt(0) +1).fill().map( (d, i) => String.fromCharCode(i + start.charCodeAt(0))) );
+  
+ let completeLetters = alphabetRange(str.charAt(0), str.charAt(str.length - 1));
+  
+  str = str.split("");
+ for(i=0; i<completeLetters.length; i++){
+   if(str.indexOf(completeLetters[i])===-1){
+     return completeLetters[i];
+   }
+ }
+  
+}
+
+fearNotLetter("abce");
 
 
 //Alternative:
