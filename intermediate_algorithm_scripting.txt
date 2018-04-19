@@ -91,3 +91,67 @@ let sourceKey = Object.keys(source);
     return true;
   });
 } 
+
+
+
+//Pig Latin
+function translatePigLatin(str) {
+  //get all consonants at the beginning
+ let consonantStart = str.match(/^[a-z]/ && /[^aeiou]*/).join();
+  
+  if(consonantStart === ""){
+   kk = str + "way";
+  }else{
+    kk = str.replace(consonantStart, "");
+    kk = kk + consonantStart + "ay";
+  } 
+  return kk;
+
+}
+
+translatePigLatin("consonant");
+
+//Alternative
+function translatePigLatin(str) {
+    var strArr = [];
+    var tmpChar;
+    
+    // check if the char is consonant using RegEx
+    function isConsonant(char) {
+        return !/[aeiou]/.test(char);
+    }
+    
+    // return initial str + "way" if it starts with vowel 
+    // if not - convert str to array
+    if (!isConsonant(str.charAt(0)))
+        return str + "way";
+    else 
+        strArr = str.split("");
+        
+    // push all consonats to the end of the array
+    while (isConsonant(strArr[0])) {
+        tmpChar = strArr.shift();
+        strArr.push(tmpChar);
+    }
+ // convert array to string and concatenate "ay" at the end  
+ return strArr.join("")+"ay";
+}
+
+// test here
+translatePigLatin("consonant");
+
+
+
+//Search and Replace
+function myReplace(str, before, after) {
+  isUpperCase = (str => str===str.toUpperCase());
+  isLowerCase = (str => str===str.toLowerCase());
+  
+   if(isUpperCase(before.charAt(0)) ){
+  after = after.replace(after.charAt(0), after.charAt(0).toUpperCase() );
+     }
+
+return str.replace(before, after);
+}
+
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
