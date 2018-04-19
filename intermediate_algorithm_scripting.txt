@@ -155,3 +155,50 @@ return str.replace(before, after);
 }
 
 myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
+
+
+//DNA Pairing
+function pairElement(str) {
+ let all=[];
+  for(i=0; i<str.length; i++){
+     switch(str.charAt(i)){
+       case "A":
+          all.push(["A", "T"]);
+         break;
+     
+       case "T":
+       all.push(["T", "A"]);
+         break;
+         
+       case "G":
+          all.push(["G", "C"]);
+         break;
+     
+       case "C":
+       all.push(["C", "G"]);
+         break;
+     }
+  }
+  return all;
+}
+
+
+pairElement("GCG");
+
+
+//Alternative:
+
+function pairElement(str) {
+  //define a map object with all pair possibilities 
+  var map = {T:'A', A:'T', G:'C', C:'G'};
+  //split str into a a char Array
+  strArr = str.split('');
+  //replace each Array item with a 2d Array using map
+  for (var i=0;i<strArr.length;i++){
+    strArr[i]=[strArr[i], map[strArr[i]]];
+  }
+ return strArr;
+}
+
+// test here
+pairElement("GCG");
