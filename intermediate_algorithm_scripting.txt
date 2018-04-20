@@ -311,3 +311,47 @@ function sumFibs(num) {
 
 // test here
 sumFibs(4);
+
+
+
+#Sum All Primes
+
+function isPrime(number) {
+  if (typeof number !== 'number' || !Number.isInteger(number)) {
+    return false;
+  }
+
+  if (number < 2) {
+    return false;
+  }
+
+  if (number === 2) {
+    return true;
+  } else if (number % 2 === 0) {
+    return false;
+  }
+ 
+  for (var i = 3; i*i <= number; i += 2) {
+    if (number % i === 0) {
+      return false;
+    }
+  }
+  return true;
+
+}
+
+
+
+function sumPrimes(num) {
+  
+sum= 0;
+for(let j=0; j<=num; j++){
+  if(isPrime(j)){
+    sum+=j;
+  }
+}
+  return sum;
+}
+
+sumPrimes(10);
+
