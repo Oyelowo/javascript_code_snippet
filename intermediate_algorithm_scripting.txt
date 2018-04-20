@@ -476,3 +476,117 @@ var Person = function(firstAndLast) {
 
 var bob = new Person('Bob Ross');
 bob.getFullName();
+
+
+//Map the Debris
+function orbitalPeriod(arr) {
+  var GM = 398600.4418;
+  var earthRadius = 6367.4447;
+  // Loop through each item in the array arr
+  arr.forEach(function(item){ 
+    // Calculate the Orbital period value
+    var tmp= Math.round(2*Math.PI*Math.sqrt(Math.pow(earthRadius+item.avgAlt,3)/GM));
+    //Delete the avgAlt property
+    delete item.avgAlt;
+    //Add orbitalPeriod property
+    item.orbitalPeriod=tmp;
+  });
+  return arr;
+}
+
+
+console.log(orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]));
+
+
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
+
+
+
+Palindrome Checker
+function reverseStr(str) {
+  return (str === '') ? '' : reverseStr(str.substr(1)) + str.charAt(0);
+}
+
+function palindrome(str) {
+  // Good luck!
+  h = (str.replace(/\W+|\s+|_/gi, "")).toLowerCase();
+  reversed = reverseStr(h);
+  
+  return h==reversed;
+}
+
+palindrome("eye");
+
+
+//Roman Numeral Converter
+
+function convertToRoman (num) {
+    let digitFormat = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    let romFormat = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+  
+    let romanNum = "";
+  
+    for(i = 0; i < digitFormat.length; i++) {
+        val = parseInt(num/digitFormat[i]);
+        for(j = 0; j < val; j++) {
+            romanNum += romFormat[i];
+        }
+        num = num%digitFormat[i];
+    }
+    return romanNum;
+}
+
+console.log(convertToRoman(36));
+
+
+var convertToRoman = function(num) {
+
+  // Create arrays with default conversion with matching indices.
+  var decimalValue = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
+  var romanNumeral = ["I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"];
+  
+  var romanized = '';
+
+  // Loop through the indices of the decimalValue array.
+  for (var index = 0; index < decimalValue.length; index++) {
+    // Continue to loop while the value at the current index will fit into numCopy
+    while (decimalValue[index] <= num) {
+      // Add the Roman numeral & decrease numCopy by the decimal equivalent.
+      romanized += romanNumeral[index];
+      num -= decimalValue[index];
+    }
+  }
+
+  return romanized;
+  
+  }
+
+console.log(convertToRoman(36));
+
+
+
+//Caesars Cipher
+ alphabetRange = ((start, end) => 
+new Array(end.charCodeAt(0) - start.charCodeAt(0) +1).fill().map( (d, i) => String.fromCharCode(i + start.charCodeAt(0))) );
+
+
+function rot13(str) { // LBH QVQ VG!
+  repAlpha = alphabetRange("A", "Z");
+  doubleAtoZ = repAlpha.concat(repAlpha);
+  wordList=str.split("");
+  
+  specialChar = /\W/;
+  decodedWords=[];
+  for(let i=0; i<wordList.length; i++){
+if(specialChar.test(wordList[i])){
+      decodedWords.push(wordList[i]);
+    }
+    else{
+   after13 = doubleAtoZ.indexOf(wordList[i]) +13;
+      decodedWords.push(doubleAtoZ[after13]);
+    }
+  }
+  return decodedWords.join("");
+}
+
+
