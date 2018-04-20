@@ -355,3 +355,51 @@ for(let j=0; j<=num; j++){
 
 sumPrimes(10);
 
+
+//Smallest Common Multiple
+
+function smallestCommons(arr) {
+  let min = Math.min(...arr);
+  let max = Math.max(...arr);
+    function range(min, max) {
+  let arr = [];
+  for(let i= min; i<= max; i++){
+    arr.push(i);
+    }
+        return arr;
+    }
+  
+//find the greatest common divider
+    function gcd(a, b) {
+        return !b ? a : gcd(b, a % b);
+    }
+
+    function lcm(a, b) {
+        return (a * b) / gcd(a, b);   
+    }
+
+    var multiple = min;
+    range(min, max).forEach(function(n) {
+        multiple = lcm(multiple, n);
+    });
+
+    return multiple;
+}
+
+
+
+smallestCommons([1,5]);
+
+
+
+//Drop it
+function dropElements(arr, func) {
+  // Drop them elements.
+  while(!func(arr[0]) && arr.length>0){
+    arr.shift();
+  }
+  return arr;
+}
+
+dropElements([1, 2, 3], function(n) {return n < 3; });
+
