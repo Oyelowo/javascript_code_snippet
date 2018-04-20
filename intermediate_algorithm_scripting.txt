@@ -392,14 +392,16 @@ smallestCommons([1,5]);
 
 
 
-//Drop it
-function dropElements(arr, func) {
-  // Drop them elements.
-  while(!func(arr[0]) && arr.length>0){
-    arr.shift();
-  }
-  return arr;
+//Steamroller
+function steamrollArray(arr) {
+  return arr.reduce(function (flat, toFlatten) {
+    return flat.concat(Array.isArray(toFlatten) ? steamrollArray(toFlatten) : toFlatten);
+  }, []);
 }
 
-dropElements([1, 2, 3], function(n) {return n < 3; });
+function steamrollArray(arr) {
+  return arr.reduce((flat, toFlatten) => flat.concat(Array.isArray(toFlatten) ? steamrollArray(toFlatten) : toFlatten), []);
+}
+
+console.log(steamrollArray([1, [2], [3, [[4]]]]));
 
