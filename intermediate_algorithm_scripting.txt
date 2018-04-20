@@ -405,3 +405,40 @@ function steamrollArray(arr) {
 
 console.log(steamrollArray([1, [2], [3, [[4]]]]));
 
+
+
+//Binary Agents
+function binaryAgent(str) {
+
+var newBin = str.split(" ");
+var binCode = [];
+
+for (i = 0; i < newBin.length; i++) {
+    binCode.push(String.fromCharCode(parseInt(newBin[i], 2)));
+  }
+return binCode.join("");
+}
+
+
+
+//Everything Be True
+function truthCheck(collection, pre) {
+  // Is everyone being true?
+  return collection.every(object => object[pre]);
+}
+
+console.log(truthCheck([{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}], "sex"));
+
+
+//Arguments Optional
+function addTogether() {
+  var args = Array.from(arguments);
+  return args.some(n => typeof n !== 'number') ? 
+    undefined: 
+    args.length > 1 ?
+      args.reduce((acc, n) => acc += n, 0):
+      (n) => typeof n === "number" ? 
+        n + args[0]:
+        undefined;
+}
+addTogether(2,3);
