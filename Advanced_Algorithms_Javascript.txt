@@ -1,0 +1,133 @@
+Palindrome Checker
+function reverseStr(str) {
+  return (str === '') ? '' : reverseStr(str.substr(1)) + str.charAt(0);
+}
+
+function palindrome(str) {
+  // Good luck!
+  h = (str.replace(/\W+|\s+|_/gi, "")).toLowerCase();
+  reversed = reverseStr(h);
+  
+  return h==reversed;
+}
+
+palindrome("eye");
+
+
+//Roman Numeral Converter
+
+function convertToRoman (num) {
+    let digitFormat = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    let romFormat = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+  
+    let romanNum = "";
+  
+    for(i = 0; i < digitFormat.length; i++) {
+        val = parseInt(num/digitFormat[i]);
+        for(j = 0; j < val; j++) {
+            romanNum += romFormat[i];
+        }
+        num = num%digitFormat[i];
+    }
+    return romanNum;
+}
+
+console.log(convertToRoman(36));
+
+
+var convertToRoman = function(num) {
+
+  // Create arrays with default conversion with matching indices.
+  var decimalValue = [1, 4, 5, 9, 10, 40, 50, 90, 100, 400, 500, 900, 1000];
+  var romanNumeral = ["I", "IV", "V", "IX", "X", "XL", "L", "XC", "C", "CD", "D", "CM", "M"];
+  
+  var romanized = '';
+
+  // Loop through the indices of the decimalValue array.
+  for (var index = 0; index < decimalValue.length; index++) {
+    // Continue to loop while the value at the current index will fit into numCopy
+    while (decimalValue[index] <= num) {
+      // Add the Roman numeral & decrease numCopy by the decimal equivalent.
+      romanized += romanNumeral[index];
+      num -= decimalValue[index];
+    }
+  }
+
+  return romanized;
+  
+  }
+
+console.log(convertToRoman(36));
+
+
+
+//Caesars Cipher
+ alphabetRange = ((start, end) => 
+new Array(end.charCodeAt(0) - start.charCodeAt(0) +1).fill().map( (d, i) => String.fromCharCode(i + start.charCodeAt(0))) );
+
+
+function rot13(str) { // LBH QVQ VG!
+  repAlpha = alphabetRange("A", "Z");
+  doubleAtoZ = repAlpha.concat(repAlpha);
+  wordList=str.split("");
+  
+  specialChar = /\W/;
+  decodedWords=[];
+  for(let i=0; i<wordList.length; i++){
+if(specialChar.test(wordList[i])){
+      decodedWords.push(wordList[i]);
+    }
+    else{
+   after13 = doubleAtoZ.indexOf(wordList[i]) +13;
+      decodedWords.push(doubleAtoZ[after13]);
+    }
+  }
+  return decodedWords.join("");
+}
+
+
+
+
+//Telephone Number Validator
+/*
+555-555-5555
+(555)555-5555
+(555) 555-5555
+555 555 5555
+5555555555
+1 555 555 5555
+*/
+
+function telephoneCheck(str) {
+  // Good luck!
+ let reg  =  /^(1\s|1|)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/;
+  
+  
+  return reg.test(str);
+}
+
+telephoneCheck("555-555-5555");
+
+
+
+function telephoneCheck(str) {
+  // Good luck!
+ let reg  =  /^(1\s|1)?((\(\d{3}\))|\d{3})(\-|\s)?(\d{3})(\-|\s)?(\d{4})$/;
+  
+  
+  return reg.test(str);
+}
+
+telephoneCheck("555-555-5555");
+
+
+
+function telephoneCheck(str) {
+  // Good luck!
+ let reg  =  /^(1\s|1)?((\([0-9]{3}\))|[0-9]{3})(\-|\s)?([0-9]{3})(\-|\s)?([0-9]{4})$/;
+  
+  
+  return reg.test(str);
+}
+
+telephoneCheck("555-555-5555");
