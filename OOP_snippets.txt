@@ -21,5 +21,42 @@ console.log(student.name + " studies at " + student.campus.street);
 student.campus.building = "Physicum"
 console.log(student.name + "'s main building is " + student.campus.building);
 
+
+
 #CREATING MULTIPLE OBJECTS USING A CONSTRUCTOR
 it is a good common practise to start constructor name with an uppercase.
+
+function Student(name, campus, major){
+  this.name = name;
+  this.campus = campus;
+  this.major = major;
+  
+  this.data = function(){
+    return "My name is " + this.name + " and I study in " + this.campus + " campus. I major in " + this.major; 
+  }
+}
+
+
+const oyelowo = new Student("Oyelowo Oyedayo", "Kumpula", "Geoinformatics");
+
+console.log(oyelowo.data());
+console.log(oyelowo.major);
+console.log(oyelowo.campus);
+console.log(oyelowo instanceof Student)
+
+
+const samuel = new Student("Samuel Koivi", "Porthania", "Law");
+
+console.log(samuel.data());
+console.log(samuel.major);
+console.log(samuel.campus);
+console.log(samuel instanceof Student);
+
+//CHANGING PROPERTIES OF OBJECTS USING FUNCTIONS:
+function changeName(student){
+  student.name = "Good Student";
+}//OR better stuill, in ES6 format
+changeName = (student => student.name = "Good Student"); 
+
+changeName(oyelowo);
+console.log(oyelowo.name);
