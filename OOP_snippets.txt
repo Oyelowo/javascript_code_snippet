@@ -1,0 +1,18 @@
+ //Creating Object
+
+const student = {
+  name:  "Oyelowo Oyedayo",
+  introduce: function() {
+    return "My name is " + this.name;
+  },
+  
+  campus: {
+    street: "Kumpula",
+    city: "Helsinki",
+    Country: "Finland"
+  }
+};
+
+
+console.log(student.introduce());
+console.log(student.name + " studies at " + student.campus.street);
