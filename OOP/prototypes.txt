@@ -7,3 +7,24 @@ function numbers( first, second){
 
 //Thia gives the number of arguments
 console.log(numbers.length)
+
+
+//ADDING PROPERTIES TO CONSTRUCTOR USING PROTOTYPE
+
+function Cat(name){
+  this.name = name;
+  this.intro = function(){
+    return "My name is " + this.name;
+  }
+}
+
+Cat.prototype.sound = "Meow";
+
+Cat.prototype.makeSound = function(){
+  return this.name + " greets " +  this.sound;
+}
+
+const cutieCat1 = new Cat("cutie");
+
+console.log(cutieCat1.sound);  
+console.log(cutieCat1.makeSound());  
