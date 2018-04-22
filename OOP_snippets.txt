@@ -16,3 +16,7 @@ const student = {
 
 console.log(student.introduce());
 console.log(student.name + " studies at " + student.campus.street);
+
+//Adding objects
+student.campus.building = "Physicum"
+console.log(student.name + "'s main building is " + student.campus.building);
