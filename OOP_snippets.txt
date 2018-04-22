@@ -20,3 +20,6 @@ console.log(student.name + " studies at " + student.campus.street);
 //Adding objects
 student.campus.building = "Physicum"
 console.log(student.name + "'s main building is " + student.campus.building);
+
+#CREATING MULTIPLE OBJECTS USING A CONSTRUCTOR
+it is a good common practise to start constructor name with an uppercase.
