@@ -60,3 +60,14 @@ changeName = (student => student.name = "Good Student");
 
 changeName(oyelowo);
 console.log(oyelowo.name);
+
+
+
+CHECKING IF TWO VARIABLES ARE EQUAL DESPITE HAVING SAME VALUES
+
+const student1 = new Student("Oyelowo Oyedayo", "Kumpula", "Geoinformatics");
+const student2 = new Student("Oyelowo Oyedayo", "Kumpula", "Geoinformatics");
+
+//Checking if two objects are equal. Having same properties and values does not mean
+//they are equal, as long as they are different variables
+console.log(student1 === student2); //false

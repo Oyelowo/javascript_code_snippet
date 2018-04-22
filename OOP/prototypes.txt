@@ -1,0 +1,9 @@
+
+//Every function contains a prototype property. They are used as if they are created objects.
+
+function numbers( first, second){
+  return first * second;
+}
+
+//Thia gives the number of arguments
+console.log(numbers.length)
