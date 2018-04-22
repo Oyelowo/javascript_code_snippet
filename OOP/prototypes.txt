@@ -28,3 +28,8 @@ const cutieCat1 = new Cat("cutie");
 
 console.log(cutieCat1.sound);  
 console.log(cutieCat1.makeSound());  
+
+//Iterating through an object to get its properties
+for(const prop in cutieCat1){
+  console.log(prop+ " : " + cutieCat1[prop]);
+}
