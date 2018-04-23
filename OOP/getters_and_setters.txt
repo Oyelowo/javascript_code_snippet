@@ -1,5 +1,5 @@
 PROVIDE USEFUL WAYS TO GET AND SET VALUES
-
+GETTERS AND SETTERS FOR OBJECTS
 let data = {
   name:  "No Name",
   course:  "No Course",
@@ -24,3 +24,108 @@ console.log("Data: " + data.getData); //Output:  "Data: Oyelowo, Geoinformatics,
 
 //Specific variables can also be gotten becauase they had been defined separately
 console.log("Course: " + data.course); //Output: "Course: Geoinformatics"
+
+
+
+
+
+//DEPRECATED GETTERS AND SETTERS FOR CONSTRUCTOR.
+//This uses a constructor
+
+
+ANOTHER METHOD
+//GETTERS AND SETTERS USING DEFINE PROPERTY: 
+
+function Point(){
+  this.xPos = 0;
+  this.yPos = 0;
+}
+
+//every function in javascript is inherited from 'Object'
+Object.defineProperty(Point.prototype, "pointPos", {
+  get: function(){
+    return "X " + this.xPos + " Y: " + this.yPos;
+  },
+  set: function(thePoint){
+    let parts = thePoint.toString().split(", ");
+    this.xPos = parts[0] || "";
+    this.yPos = parts[1] || "";
+  }
+});
+
+
+let onePoint = new Point();
+
+onePoint.pointPos = "250, 490";
+
+console.log(onePoint.pointPos),  //"250, 490"
+console.log(onePoint.xPos); //"250"
+console.log(onePoint.yPos); //"490"
+
+
+
+//Deprecated getters and setters.
+//This uses a constructor
+
+function StudentData(){
+  this.name =  "No Name";
+  this.course =  "No Course";
+  this.school =  "No School";
+}
+
+Object.__defineGetter__.call(StudentData.prototype, 
+       "getData", function(){
+        return "Name: " + this.name + " Course: " + this.course + " School: " + this.school;
+});
+
+
+Object.__defineSetter__.call(StudentData.prototype, 
+       "setData", function(data){
+        let parts = data.toString().split(", ");
+        this.name = parts[0];
+        this.course = parts[1];
+        this.school = parts[2];
+});
+
+let student1 = new StudentData();
+
+student1.setData = "Oyelowo, Geoinfomratics, University of Helsinki";
+
+console.log(student1.getData);  //"Name: Oyelowo Course: Geoinfomratics School: University of Helsinki"University of Helsinki"
+
+console.log(student1.name);  //"Oyelowo"
+console.log(student1.course); //"Geoinfomratics"
+console.log(student1.school);  // "University of Helsinki"
+
+EXAMPLE 2: GETTERS AND SETTERS FOR CONSTRUCTOR
+
+function Coordinates(){
+  this.latitude = 0;
+  this.longitude = 0;
+}
+
+Object.__defineGetter__.call(Coordinates.prototype, 
+       "getCoords", function(){
+        return "lat: " + this.latitude + " Long: " + this.longitude;
+});
+
+
+Object.__defineSetter__.call(Coordinates.prototype, 
+       "setCoords", function(coords){
+        let parts = coords.toString().split(", ");
+        this.latitude = parts[0];
+        this.longitude = parts[1];
+});
+
+const exampleCoords = new Coordinates();
+
+exampleCoords.setCoords = "60.25, 81.10";
+
+console.log(exampleCoords.getCoords);  //"lat: 60.25 Long: 81.10"
+
+console.log(exampleCoords.latitude);  //"60.25"
+console.log(exampleCoords.longitude); //"81.10"
+
+
+
+
