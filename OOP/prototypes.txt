@@ -33,3 +33,28 @@ console.log(cutieCat1.makeSound());
 for(const prop in cutieCat1){
   console.log(prop+ " : " + cutieCat1[prop]);
 }
+
+
+
+//Adding function to the array built-in object
+//check if a number is in array
+//"this" references to the array
+Array.prototype.inArray = function inArray(value){
+  for(let i=0; i < this.length; i++){
+    if(this[i]===value){
+      return true;
+    }
+  }
+  return false;
+}
+
+anArray = [2, 1, 5, 75, 74, 25];
+
+console.log(anArray.inArray(44));
+
+
+
+PRIVATE PROPERTIES.
+All properties in an object are PUBLIC, in that any function can modify or delete them.
+However, you can make the properties PRIVATE by defining them
+as variables in a constructor.
