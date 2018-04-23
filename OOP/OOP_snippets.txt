@@ -1,0 +1,73 @@
+ //Creating Object
+
+const student = {
+  name:  "Oyelowo Oyedayo",
+  introduce: function() {
+    return "My name is " + this.name;
+  },
+  
+  campus: {
+    street: "Kumpula",
+    city: "Helsinki",
+    Country: "Finland"
+  }
+};
+
+
+console.log(student.introduce());
+console.log(student.name + " studies at " + student.campus.street);
+
+//Adding objects
+student.campus.building = "Physicum"
+console.log(student.name + "'s main building is " + student.campus.building);
+
+
+
+#CREATING MULTIPLE OBJECTS USING A CONSTRUCTOR
+it is a good common practise to start constructor name with an uppercase.
+
+function Student(name, campus, major){
+  this.name = name;
+  this.campus = campus;
+  this.major = major;
+  
+  this.data = function(){
+    return "My name is " + this.name + " and I study in " + this.campus + " campus. I major in " + this.major; 
+  }
+}
+
+
+const oyelowo = new Student("Oyelowo Oyedayo", "Kumpula", "Geoinformatics");
+
+console.log(oyelowo.data());
+console.log(oyelowo.major);
+console.log(oyelowo.campus);
+console.log(oyelowo instanceof Student)
+
+
+const samuel = new Student("Samuel Koivi", "Porthania", "Law");
+
+console.log(samuel.data());
+console.log(samuel.major);
+console.log(samuel.campus);
+console.log(samuel instanceof Student);
+
+//CHANGING PROPERTIES OF OBJECTS USING FUNCTIONS:
+function changeName(student){
+  student.name = "Good Student";
+}//OR better stuill, in ES6 format
+changeName = (student => student.name = "Good Student"); 
+
+changeName(oyelowo);
+console.log(oyelowo.name);
+
+
+
+CHECKING IF TWO VARIABLES ARE EQUAL DESPITE HAVING SAME VALUES
+
+const student1 = new Student("Oyelowo Oyedayo", "Kumpula", "Geoinformatics");
+const student2 = new Student("Oyelowo Oyedayo", "Kumpula", "Geoinformatics");
+
+//Checking if two objects are equal. Having same properties and values does not mean
+//they are equal, as long as they are different variables
+console.log(student1 === student2); //false

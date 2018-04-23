@@ -14,7 +14,7 @@ function Canine(){
 }
 
 function Wolf(){
-  this.namee = "Wolf";
+  this.name = "Wolf";
 }
 
 //Overwriting construcor
@@ -33,3 +33,9 @@ let finnishWolf = new Wolf();
 
 //This can now access toString even though it is in the parent object "Animal". It uses function "toString" in "Animal" and the name in "Wolf" since wolf also has the property "name". if name is deleted from wolf constructor, it will refer to the name in Canine which is "Canine.
 console.log(finnishWolf.toString()) //"My name is Wolf"
+
+console.log("Wolf is an instance of Animal?: "+ (finnishWolf instanceof Animal)); //"Wolf is an instance of Animal?: true"
+
+
+//This is because wolf inherited from Canine, on a second level indirectly from Animal
+console.log("Wolf is an instance of Canine?: "+ (finnishWolf instanceof Canine)); //"Wolf is an instance of Canine?: true"
