@@ -17,7 +17,6 @@ let data = {
   }
 } 
 
-
 data.setData = "Oyelowo, Geoinformatics, Uni Helsinki";
 
 console.log("Data: " + data.getData); //Output:  "Data: Oyelowo, Geoinformatics,Uni Helsinki"
@@ -27,9 +26,37 @@ console.log("Course: " + data.course); //Output: "Course: Geoinformatics"
 
 
 
+let Circle = function(radius){
+  this._radius = radius;
+}
 
 
-//DEPRECATED GETTERS AND SETTERS FOR CONSTRUCTOR.
+GETTERS AND SETTERS IN ECMASCRIPT 5.1/ES5.1 (BEST THUS FAR)
+The below creates getters and setters for the constructor
+Circle.prototype = {
+  set radius(radius){
+    this._radius = radius;
+  },
+  get radius(){
+    return this._radius;
+  },
+  get area(){
+    return Math.PI * (this._radius * this._radius);
+  }
+};
+
+let firstCircle = new Circle(33);
+
+console.log(firstCircle.radius); //33
+
+console.log(firstCircle.area.toFixed(3)) // to 3 decimal places: "3421.194"
+
+
+
+
+
+
+
 //This uses a constructor
 
 
@@ -64,7 +91,9 @@ console.log(onePoint.yPos); //"490"
 
 
 
-//Deprecated getters and setters.
+
+ANOTHER METHOD.
+//DEPRECATED GETTERS AND SETTERS FOR CONSTRUCTOR.
 //This uses a constructor
 
 function StudentData(){
