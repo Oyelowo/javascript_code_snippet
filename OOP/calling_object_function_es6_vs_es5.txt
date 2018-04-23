@@ -1,0 +1,27 @@
+//ECMA 6
+//method notatio nin object property definition change
+
+//OLD METHOD
+let addNum = {
+  sum : function(num1, num2){
+    return num1 + num2;
+  }
+};
+
+//console.log(addNum.sum(34,25))
+
+//NEW METHODS
+let add2 ={
+  sum(num1, num2){
+   return num1 + num2;
+  }
+}
+
+console.log(add2.sum(23, 98));
+
+
+let add3 ={
+  sum: ((num1, num2) => num1 + num2)
+}
+
+console.log(add3.sum(33, 98));
