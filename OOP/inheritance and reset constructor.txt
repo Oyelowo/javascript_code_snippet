@@ -1,0 +1,35 @@
+//INHERITANCE
+
+
+function Animal(){
+  this.name = "Animal";
+  
+  this.toString = function(){
+    return "My name is " + this.name;
+  };
+}
+
+function Canine(){
+  this.name = "Canine"
+}
+
+function Wolf(){
+  this.namee = "Wolf";
+}
+
+//Overwriting construcor
+//Inherit from the Animal properties(objects, methods)
+Canine.prototype = new Animal();
+
+//Create another level of inheritance
+Wolf.prototype = new Canine();
+
+//NOTE: after overwriting a constructor, the prototype will point to the main object. So, it is important 
+//to reset the constructor back to its original constructor
+Canine.prototype.constructor = Canine;
+Wolf.prototype.constructor = Wolf;
+
+let finnishWolf = new Wolf();
+
+//This can now access toString even though it is in the parent object "Animal". It uses function "toString" in "Animal" and the name in "Wolf" since wolf also has the property "name". if name is deleted from wolf constructor, it will refer to the name in Canine which is "Canine.
+console.log(finnishWolf.toString()) //"My name is Wolf"

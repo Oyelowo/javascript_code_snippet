@@ -31,6 +31,7 @@ let Circle = function(radius){
 }
 
 
+###########################################################################################
 GETTERS AND SETTERS IN ECMASCRIPT 5.1/ES5.1 (BEST THUS FAR)
 The below creates getters and setters for the constructor
 Circle.prototype = {
@@ -56,7 +57,7 @@ console.log(firstCircle.area.toFixed(3)) // to 3 decimal places: "3421.194"
 
 
 
-
+###########################################################################################
 //This uses a constructor
 
 
@@ -91,7 +92,7 @@ console.log(onePoint.yPos); //"490"
 
 
 
-
+###########################################################################################
 ANOTHER METHOD.
 //DEPRECATED GETTERS AND SETTERS FOR CONSTRUCTOR.
 //This uses a constructor
