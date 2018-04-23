@@ -1,0 +1,35 @@
+class Animal{
+  constructor(name){
+    this.name =name
+  }
+  toString(){
+    return "Animal is named " + this.name;
+  }
+  
+  //allows one to generate new animal objectrs by calling the static function
+  static getAnimal(){
+    return new Animal("No Name");
+  }
+}
+
+//Extend or inherit
+
+class Dog extends Animal{
+  constructor(name, owner){
+    super(name);  //automaatically calls the super constructor
+    this.owner = owner;
+  }
+  toString(){
+    return super.toString() + "Dog is named " + this.name;
+  }
+}
+
+let rover = new Dog("Rover", "Paul");
+
+console.log("Name: " + rover.name + ", Owner: " + rover.owner);
+
+
+console.log(rover.toString());
+
+let bowser = Animal.getAnimal();
+console.log("Bowser info : " + bowser.toString());

@@ -1,0 +1,93 @@
+//design pattern
+
+//Singular pattern.
+
+function Hero(name){
+  //check if object already exists
+  if(typeof Hero.instance ==='object') {
+    return Hero.instance;
+  }
+  this.name = name;
+  Hero.instance = this;
+  return this;
+}
+
+
+let lowoHero = Hero("Oyelowo");
+console.log("My Hero is "+ lowoHero.name); //"My Hero is Oyelowo"
+
+
+//The below will also output same as above because it is singular. We can have only one hero in this case
+let dayoHero = Hero("Dayo");
+console.log("My Hero is "+ dayoHero.name); //"My Hero is Oyelowo"
+
+
+###########################################################################################
+//multiple patterns
+
+//Factory patterns
+//Factory patterns could be used to generate different objects on reqeuest. that is dynamic creation of objects
+
+function Sword(desc){
+  this.weaponType = "Sword";
+  this.metal = desc.metal || "Steel"; //"Steel" is default value
+  this.style = desc.style || "Longsword";
+  this.hasMagic = desc.hasMagic || false;
+}
+
+
+function Bow(desc){
+  this.weaponType = "Bow";
+  this.material = desc.metal || "Wood"; //"Wood" is default value
+  this.style = desc.style || "Longbow";
+  this.hasMagic = desc.hasMagic || false;
+}
+
+function WeaponFactory(){};
+
+WeaponFactory.prototype.makeWeapon = function(desc){
+  let weaponClass = null;
+  
+  if(desc.weaponType === "Sword"){
+    weaponClass = Sword;
+  } else if(desc.weaponType === "Bow"){
+    weaponClass= Bow;
+  }else{
+    return false;
+  }
+  return new weaponClass(desc);
+}
+
+let myWeaponFact = new WeaponFactory();
+
+let bladeFist = myWeaponFact.makeWeapon({
+  weaponType: "Sword",
+  metal: "Dark Iron",
+  style: "Scythe",
+  hasMagic: true
+});
+
+console.log(bladeFist.weaponType + " of type " + bladeFist.style + " crafted from " + bladeFist.metal);
+
+
+DECORATOR PATTERNS.
+Allows us to order an object at runtime.
+function Pizza(price){
+  this.price = price || 10; //10 is default price
+}
+
+Pizza.prototype.getPrice = function(){
+  return this.price;
+}
+
+function ExtraCheese(pizza){
+  let prevPrice = pizza.price;
+  
+  pizza.price = prevPrice + 1;
+}
+
+let myPizza = new Pizza(10);
+
+ExtraCheese(myPizza);
+
+console.log("Cost of Pizza: £" + myPizza.price);  //"Cost of Pizza: £11"

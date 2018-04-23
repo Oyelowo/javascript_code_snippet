@@ -1,0 +1,53 @@
+ES6 class creation
+
+//Class in javascript
+class Point {
+  constructor(xPos, yPos){
+    this.xPos = xPos;
+    this.yPos = yPos;
+  }
+  
+  getPos(){
+    return "X " + this.xPos + " Y: " + this.yPos;
+  }
+}
+
+let point = new Point(250, 340);
+ 
+console.log(point.getPos());  //"X 250 Y: 340"
+console.log(point.xPos);  //250
+console.log(point.yPos);   //340
+
+
+
+
+
+
+
+ES5 WAY OF DOING THE ABOVE.
+//GETTERS AND SETTERS USING DEFINE PROPERTY: 
+function Point(){
+  this.xPos = 0;
+  this.yPos = 0;
+}
+
+//every function in javascript is inherited from 'Object'
+Object.defineProperty(Point.prototype, "pointPos", {
+  get: function(){
+    return "X " + this.xPos + " Y: " + this.yPos;
+  },
+  set: function(thePoint){
+    let parts = thePoint.toString().split(", ");
+    this.xPos = parts[0] || "";
+    this.yPos = parts[1] || "";
+  }
+});
+
+
+let onePoint = new Point();
+
+onePoint.pointPos = "250, 490";
+
+console.log(onePoint.pointPos),  //"250, 490"
+console.log(onePoint.xPos); //"250"
+console.log(onePoint.yPos); //"490"
