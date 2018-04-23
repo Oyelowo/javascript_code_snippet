@@ -1,0 +1,26 @@
+PROVIDE USEFUL WAYS TO GET AND SET VALUES
+
+let data = {
+  name:  "No Name",
+  course:  "No Course",
+  school:  "No School",
+  
+  get getData(){
+    return this.name + ", " + this.course + "," + this.school;
+  },
+  
+  set setData(theData){
+    let parts = theData.toString().split(", ");
+    this.name = parts[0] || ""; //(|| "") is used in case user enters nothing
+    this.course = parts[1] || "";
+    this.school = parts[2] || "";
+  }
+} 
+
+
+data.setData = "Oyelowo, Geoinformatics, Uni Helsinki";
+
+console.log("Data: " + data.getData); //Output:  "Data: Oyelowo, Geoinformatics,Uni Helsinki"
+
+//Specific variables can also be gotten becauase they had been defined separately
+console.log("Course: " + data.course); //Output: "Course: Geoinformatics"
