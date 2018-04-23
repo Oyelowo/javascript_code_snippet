@@ -1,0 +1,34 @@
+//CALLING PARENT METHODS OR CREATING SUPERCLASSES
+
+function Vehicle(name){
+  this.name = name;
+}
+
+Vehicle.prototype = {
+  drive: function(){
+    return this.name + " drives forward";
+  },
+  stop: function(){
+    return this.name + " stops";
+  }
+}
+
+
+function Truck(name){
+  this.name = name;
+}
+
+//inherit functions from the Vehicle
+Truck.prototype = new Vehicle();
+Truck.prototype.constructor = Truck;
+
+//Over-writing a method inside of the Truck constructor
+Truck.prototype.drive = function(){
+  let driveMsg = Vehicle.prototype.drive.apply(this); //calling the parent method which is inside the prototype. allows to call the Vehicle version of drive even though the drive version of Vehicle is being overriden inside the truck object.
+  return driveMsg += " through a field"
+}
+
+let jeep = new Truck("Jeep");
+
+console.log(jeep.drive());  //"Jeep drives forward through a field"
+console.log(jeep.stop());   //"Jeep stops"

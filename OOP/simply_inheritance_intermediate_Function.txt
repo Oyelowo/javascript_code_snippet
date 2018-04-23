@@ -1,0 +1,35 @@
+function Animal(){
+  this.name = "Animal";
+  
+  this.toString = function(){
+    return "My name is " + this.name;
+  };
+}
+
+Animal.prototype.sound = "Skrrrrrrrr";
+Animal.prototype.playSound= function(){
+  return this.name + " shouts " + this.sound;
+}
+
+//SIMPLIFYING INHERITANCE USING INTERMEDIATE FUNCTION
+//Handling assigning prototypes and assigning constructors, to make sure everything works.
+
+function extend(Child, Parent){
+  let Temporary = function(){}; //Object
+  
+  Temporary.prototype = Parent.prototype;
+  Child.prototype = new Temporary();
+  Child.prototype.constructor = Child;
+}
+
+
+function Deer(){
+  this.name = "Deer";
+  this.sound = "Snort";
+}
+
+extend(Deer, Animal)
+
+let elk = new Deer();
+
+console.log(elk.playSound()) //"Deer shouts Snort"

@@ -26,6 +26,7 @@ Wolf.prototype = new Canine();
 
 //NOTE: after overwriting a constructor, the prototype will point to the main object. So, it is important 
 //to reset the constructor back to its original constructor
+
 Canine.prototype.constructor = Canine;
 Wolf.prototype.constructor = Wolf;
 
@@ -39,3 +40,65 @@ console.log("Wolf is an instance of Animal?: "+ (finnishWolf instanceof Animal))
 
 //This is because wolf inherited from Canine, on a second level indirectly from Animal
 console.log("Wolf is an instance of Canine?: "+ (finnishWolf instanceof Canine)); //"Wolf is an instance of Canine?: true"
+
+
+
+
+//REASSIGNING THE OBJECTS IN PROTOTYPES.
+Animal.prototype.sound = "Skrrrrrrrr";
+Animal.prototype.playSound= function(){
+  return this.name + " shouts " + this.sound;
+}
+
+
+//We're also able to reassign the prototype
+Canine.prototype.sound = "drreeeeeee Canine";
+Wolf.prototype.sound = "ziiiiiiii Wolf"
+
+console.log(finnishWolf.sound);   //"ziiiiiiii Wolf"
+
+console.log(finnishWolf.playSound());   //"Wolf shouts ziiiiiiii Wolf"
+
+
+function Rodent(){
+  this.name = "Rodent";
+}
+
+function Rat(){
+  this.name = "Rat";
+}
+
+Rodent.prototype = new Animal();
+
+Rat.prototype = Rodent.prototype;
+Rodent.prototype.constructor = Rodent;
+Rat.prototype.constructor = Rat;
+
+
+let toughRat = new Rat();
+
+console.log(toughRat.toString());  //"My name is Rat"
+
+
+//SIMPLIFYING INHERITANCE USING INTERMEDIATE FUNCTION
+//Handling assigning prototypes and assigning constructors, to make sure everything works.
+
+function extend(Child, Parent){
+  let Temporary = function(){}; //Object
+  
+  Temporary.prototype = Parent.prototype;
+  Child.prototype = new Temporary();
+  Child.prototype.constructor = Child;
+}
+
+
+function Deer(){
+  this.name = "Deer";
+  this.sound = "Snort";
+}
+
+extend(Deer, Animal)
+
+let elk = new Deer();
+
+console.log(elk.playSound()) //"Deer shouts Snort"
