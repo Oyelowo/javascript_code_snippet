@@ -1,0 +1,58 @@
+PRIVATE PROPERTIES.
+All properties in an object are PUBLIC, in that any function can modify or delete them.
+However, you can make the properties PRIVATE by defining them
+as variables in a constructor.
+
+function SecretCode(){
+  var privateNum = 19;
+  this.guessCode = function(num){
+    if(num < 19){
+      return 'Higher';
+    }else if(num > 19){
+      return 'Lower';
+    }else if(num === undefined){
+      return "you have not imputed a numer"
+    }
+    else{
+      return "You're right!!!";
+    }
+  }
+}
+
+myNum = new SecretCode();
+console.log(myNum.code); //returns undefined because it has been declared as a variable in the constructor.
+
+console.log(myNum.guessCode(2)); //to check the number
+
+
+
+Even a function can get or change it:
+
+SecretCode.prototype.getCode = function() {
+  return this.secretNum;
+}
+
+console.log(pinCode.getCode());  // returns undefined
+
+
+HOWEVER, USING THE VARIABLE WITHIN THE CONSTRUCTOR WILL WORK.
+function SecretCode(){
+  var privateNum = 19;
+  this.guessCode = function(num){
+    if(num < privateNum){
+      return 'Higher';
+    }else if(num > privateNum){
+      return 'Lower';
+    }else if(num === undefined){
+      return "you have not imputed a numer"
+    }
+    else{
+      return "You're right!!!";
+    }
+  }
+}
+
+const myNum = new SecretCode;
+
+
+console.log(myNum.guessCode(19)); //to check the number

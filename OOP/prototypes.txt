@@ -54,7 +54,3 @@ console.log(anArray.inArray(44));
 
 
 
-PRIVATE PROPERTIES.
-All properties in an object are PUBLIC, in that any function can modify or delete them.
-However, you can make the properties PRIVATE by defining them
-as variables in a constructor.
