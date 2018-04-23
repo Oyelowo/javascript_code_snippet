@@ -91,3 +91,59 @@ let myPizza = new Pizza(10);
 ExtraCheese(myPizza);
 
 console.log("Cost of Pizza: £" + myPizza.price);  //"Cost of Pizza: £11"
+
+
+
+
+//OBSERVER PATTERN.
+//Uses a singl object and notify many other different objects whenever state changes occur.
+
+let Observable = function(){
+  this.subscribers = []; 
+}
+
+Observable.prototype = {
+  subscribe: function(subscriber){
+    this.subscribers.push(subscriber);
+  },
+  
+  unsubscribe: function(unsubscriber){
+    for(let i=0; i < this.subscribers.length; i++){
+      if(this.subscribers[i] === unsubscriber){
+        this.subscribers.splice(i,1);
+        return unsubscriber.name; 
+      } 
+    }
+  },
+  
+  publish: function(data){
+    for(i=0; i< this.subscribers.length; i++){
+      this.subscribers[i].receiveData(data);
+    }
+  }
+};
+
+let OrganFanny ={
+  name: "Organ Fanny",
+  receiveData: function(data){
+    console.log(this.name + " received your info " + data)
+  }
+}
+
+let OyelowoDayo ={
+  name: "Oyelowo Dayo",
+  receiveData: function(data){
+    console.log(this.name + " received your info " + data)
+  }
+}
+
+observable = new Observable();
+
+observable.subscribe(OrganFanny);
+observable.subscribe(OyelowoDayo);
+
+observable.publish('IBM at £135.20');
+
+console.log(observable.unsubscribe(OrganFanny) + " unsubscribed");
+
+observable.publish('IBM at £135.20');
