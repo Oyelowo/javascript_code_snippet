@@ -1,0 +1,15 @@
+
+function reverseStr(str) {
+  return (str === '') ? '' : reverseStr(str.substr(1)) + str.charAt(0);
+}
+
+function palindrome(str) {
+  // Good luck!
+  h = (str.replace(/\W+|\s+|_/gi, "")).toLowerCase();
+  reversed = reverseStr(h);
+  
+  return h==reversed;
+}
+
+
+palindrome("eye");

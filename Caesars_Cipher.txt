@@ -1,0 +1,30 @@
+ alphabetRange = ((start, end) => 
+new Array(end.charCodeAt(0) - start.charCodeAt(0) +1).fill().map( (d, i) => String.fromCharCode(i + start.charCodeAt(0))) );
+
+
+function rot13(str) { // LBH QVQ VG!
+  repAlpha = alphabetRange("A", "Z");
+  doubleAtoZ = repAlpha.concat(repAlpha);
+  wordList=str.split("");
+  
+  specialChar = /\W/;
+  decodedWords=[];
+  for(let i=0; i<wordList.length; i++){
+if(specialChar.test(wordList[i])){
+      decodedWords.push(wordList[i]);
+    }
+    else{
+   after13 = doubleAtoZ.indexOf(wordList[i]) +13;
+      decodedWords.push(doubleAtoZ[after13]);
+    }
+  }
+  return decodedWords.join("");
+}
+
+
+
+// Change the inputs below to test
+console.log(rot13("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT."));
+
+// Change the inputs below to test
+rot13("SERR PBQR PNZC");
