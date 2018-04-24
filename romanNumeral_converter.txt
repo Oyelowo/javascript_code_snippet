@@ -1,0 +1,52 @@
+function convertToRoman(num) {
+    //Create two corresponding arrays for normal digits and roman numerals
+    let digitFormat = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    let romanNumArray = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+    let output = ""; //will be used to track the roman numerals
+
+    //loop through the digit array
+    for (let i = 0; i < digitFormat.length; i++) {
+        //this continues until the input number is less than the digit on the array. if the number less than any digit on the array, it fails at the beginning of the loop and continues to next number until it is passes the test again
+        while (num >= digitFormat[i]) {
+            //then keep adding the roman equivalent of the digit
+            output += romanNumArray[i];
+            //at the same time, decrease the number at every cycle
+            num -= digitFormat[i];
+        }
+    }
+    return output;
+}
+
+console.log(convertToRoman(9543))
+
+
+
+
+
+
+
+
+
+
+
+
+
+function convertToRoman (num) {
+    let digitFormat = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+    let romFormat = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I'];
+  
+    let romanNum = "";
+  
+    for(i = 0; i < digitFormat.length; i++) {
+        val = parseInt(num/digitFormat[i]);
+        for(j = 0; j < val; j++) {
+            romanNum += romFormat[i];
+        }
+        num = num%digitFormat[i];
+    }
+    return romanNum;
+}
+
+console.log(convertToRoman(36));
+
+convertToRoman(36);
