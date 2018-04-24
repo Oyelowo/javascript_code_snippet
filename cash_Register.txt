@@ -65,3 +65,9 @@ h = cid.reduce((acc, val)=> acc + val[1], 0);
 console.log(h);
 
  
+
+round off number
+
+h = cid.reduce((acc, val)=> acc + val[1], 0);
+console.log(parseFloat(h.toFixed(2)));   //method 1
+console.log(Math.round(h * 100) / 100)		//method 2
