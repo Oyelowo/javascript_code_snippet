@@ -71,3 +71,49 @@ round off number
 h = cid.reduce((acc, val)=> acc + val[1], 0);
 console.log(parseFloat(h.toFixed(2)));   //method 1
 console.log(Math.round(h * 100) / 100)		//method 2
+
+
+
+###############################################
+MORE
+
+
+cur = [{"Penny": 0.01},
+       {"Nickel" : 0.05},
+       {"Dime":	0.1},
+       {"Quarter": 0.25},
+       {"Dollar": 1},
+       {"Five Dollars" : 5},
+       {"Ten Dollars": 10},
+       {"Twenty Dollars": 20 },
+       {"One-hundred Dollars": 100}]
+
+
+function checkCashRegister(price, cash, cid){
+  let change = cash - price;
+  let outcome = {status: null, change: []}
+  
+  // total cash in cid
+let totalCid = cid.reduce((acc, val)=> acc + val[1], 0);
+  
+  //make sure it is in 2.dp
+totalCid = parseFloat(totalCid.toFixed(2))
+  
+  if (totalCid < change){
+    return {status: "INSUFFICIENT_FUNDS", change: []}
+  }
+  else if(totalCid === change){
+    return {status: "CLOSED", change: [totalCid]}
+  }
+  
+}
+
+ cid = [["PENNY", 1.01],
+ ["NICKEL", 2.05],
+ ["DIME", 3.1],
+ ["QUARTER", 4.25],
+ ["ONE", 90],
+ ["FIVE", 55],
+ ["TEN", 20],
+ ["TWENTY", 60],
+ ["ONE HUNDRED", 100]]
