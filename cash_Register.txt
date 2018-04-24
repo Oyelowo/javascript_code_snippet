@@ -1,5 +1,5 @@
 function checkCashRegister(price, cash, cid) {
-    let cur = [
+    let allDenominations = [
         ["PENNY", 0.01],
         ["NICKEL", 0.05],
         ["DIME", 0.10],
@@ -11,44 +11,99 @@ function checkCashRegister(price, cash, cid) {
         ["ONE HUNDRED", 100.00]
     ];
 
-    let changeArr = [];
-    
+    //Customer change
+    let changeArray = [];
     // total cash in cid
     let totalCid = cid.reduce((acc, val) => acc + val[1], 0);
 
     //make sure it is in 2.dp
     totalCid = parseFloat(totalCid.toFixed(2));
+
+    //change value
     let change = cash - price;
-let change2 = cash - price;
 
+    //this is used later for closed status of change, because the 
+    //first change will be modified later. This is needed
+    //to evaluate when total cid is equal to change.
+    let changeCopy = cash - price;
 
-
+    //////////////////////////////////////////////////////////////
+    ///GETTING THE CHANGE ARRAY.
+    //loop through the cid from the last value which is the largest.
     for (let i = cid.length - 1; i >= 0; i--) {
-        let v = 0;
+        //each currency denomination
+        let eachDenomination = 0;
 
-        while (cid[i][1] > 0 && change >= cur[i][1]) {
-            change -= cur[i][1];
+        //while each cash in drawer is more than 0 and change is 
+        //more or equal to each denomination
+        while (cid[i][1] > 0 && change >= allDenominations[i][1]) {
+            //reduce the change by the corresponding denomination everytime
+            change -= allDenominations[i][1];
+            //ensure change is in 2.dp to avoid decimal problems
             change = parseFloat(change.toFixed(2));
-            cid[i][1] -= cur[i][1];
-            v += cur[i][1];
-          v = parseFloat(v.toFixed(2));
+            //also, reduce the specific denomination in drawer everytime, by the corresponding denomination
+            cid[i][1] -= allDenominations[i][1];
+
+            //the amount the denomination can yield, increases each time until
+            //the cid(cash in drawer) is 0 or the change is less than the denomination.
+            eachDenomination += allDenominations[i][1];
+
+            //handle floating
+            eachDenomination = parseFloat(eachDenomination.toFixed(2));
         }
-        if (v >= 0 ) {
-            changeArr.push([cid[i][0], v]);
-        }
+        changeArray.push([cid[i][0], eachDenomination]);
+    }
+    ////////////////////////////////////////////////////////////////77
+
+    //SUM THE DENOMINATIONS IN THE ARRAY OF AVAILABLE CHANGE
+    let AvailableChange = changeArray.reduce((acc, val) => acc + val[1], 0);
+    AvailableChange = parseFloat(AvailableChange.toFixed(2));
+
+    if (AvailableChange < changeCopy) {
+        return {
+            status: "INSUFFICIENT_FUNDS",
+            change: []
+        };
+    } else if (totalCid === changeCopy) {
+        return {
+            status: "CLOSED",
+            change: changeArray.reverse()
+        };
+    } else {
+        return {
+            status: "OPEN",
+            change: changeArray.filter(val => val[1] > 0) //exclude the denominations that are empty
+        };
     }
 
-    let avi = changeArr.reduce((acc, val) => acc + val[1], 0);
-    avi = parseFloat(avi.toFixed(2));
-
-    if (avi < change) {
-        return {status: "INSUFFICIENT_FUNDS", change: []};
-    } 
-
-  if(totalCid > 2){
-    return {status: "OPEN", change: changeArr.filter(a => a[1] > 0)};
-  } else if(totalCid === change2){ 
-    return {status: "CLOSED", change: changeArr.reverse()};
-  }
-    
 }
+
+
+
+
+console.log(checkCashRegister(19.50, 163.43, [
+    ["PENNY", 1.01],
+    ["NICKEL", 2.05],
+    ["DIME", 3.10],
+    ["QUARTER", 4.25],
+    ["ONE", 90.00],
+    ["FIVE", 55.00],
+    ["TEN", 20.00],
+    ["TWENTY", 60.00],
+    ["ONE HUNDRED", 100.00]
+]));
+
+
+
+
+console.log(checkCashRegister(19.5, 20, [
+    ["PENNY", 0.5],
+    ["NICKEL", 0],
+    ["DIME", 0],
+    ["QUARTER", 0],
+    ["ONE", 0],
+    ["FIVE", 0],
+    ["TEN", 0],
+    ["TWENTY", 0],
+    ["ONE HUNDRED", 0]
+]));
