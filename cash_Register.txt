@@ -28,7 +28,8 @@ function checkCashRegister(price, cash, cid) {
     if (totalCid === change) {
         // return "closed"
         outcome.status = "CLOSED";
-        outcome.change = [totalCid]
+        outcome.change = [totalCid];
+      return outcome;
     }
 
     for (let i = cid.length - 1; i >= 0; i--) {
@@ -39,6 +40,7 @@ function checkCashRegister(price, cash, cid) {
             change = parseFloat(change.toFixed(2));
             cid[i][1] -= cur[i][1];
             v += cur[i][1];
+          v = parseFloat(v.toFixed(2));
         }
         if (v > 0) {
             changeArr.push([cid[i][0], v]);
@@ -59,4 +61,3 @@ function checkCashRegister(price, cash, cid) {
 
     return outcome;
 }
-
