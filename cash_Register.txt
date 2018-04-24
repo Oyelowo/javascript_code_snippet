@@ -19,18 +19,9 @@ function checkCashRegister(price, cash, cid) {
     //make sure it is in 2.dp
     totalCid = parseFloat(totalCid.toFixed(2));
     let change = cash - price;
-    let outcome = {
-        status: null,
-        change: []
-    };
+let change2 = cash - price;
 
 
-    if (totalCid === change) {
-        // return "closed"
-        outcome.status = "CLOSED";
-        outcome.change = [totalCid];
-      return outcome;
-    }
 
     for (let i = cid.length - 1; i >= 0; i--) {
         let v = 0;
@@ -42,72 +33,7 @@ function checkCashRegister(price, cash, cid) {
             v += cur[i][1];
           v = parseFloat(v.toFixed(2));
         }
-        if (v > 0) {
-            changeArr.push([cid[i][0], v]);
-            outcome.status = "OPEN";
-            outcome.change = changeArr;
-        }
-    }
-
-    let avi = changeArr.reduce((acc, val) => acc + val[1], 0);
-    avi = parseFloat(avi.toFixed(2));
-
-    if (avi < change) {
-        // return "insufficient funds";
-        outcome.status = "INSUFFICIENT_FUNDS";
-        outcome.change = [];
-        return outcome;
-    }
-
-    return outcome;
-}
-
-
-
-
-
-#############################################3
-//Shorter version
-
-function checkCashRegister(price, cash, cid) {
-    let cur = [
-        ["PENNY", 0.01],
-        ["NICKEL", 0.05],
-        ["DIME", 0.10],
-        ["Quarter", 0.25],
-        ["ONE", 1.00],
-        ["FIVE", 5.00],
-        ["TEN", 10.00],
-        ["TWENTY", 20.00],
-        ["ONE HUNDRED", 100.00]
-    ];
-
-    let changeArr = [];
-    
-    // total cash in cid
-    let totalCid = cid.reduce((acc, val) => acc + val[1], 0);
-
-    //make sure it is in 2.dp
-    totalCid = parseFloat(totalCid.toFixed(2));
-    let change = cash - price;
-
-
-    if (totalCid === change) {
-        // return "closed"
-      return {status: "CLOSED", change: [totalCid]};
-    }
-
-    for (let i = cid.length - 1; i >= 0; i--) {
-        let v = 0;
-
-        while (cid[i][1] > 0 && change >= cur[i][1]) {
-            change -= cur[i][1];
-            change = parseFloat(change.toFixed(2));
-            cid[i][1] -= cur[i][1];
-            v += cur[i][1];
-          v = parseFloat(v.toFixed(2));
-        }
-        if (v > 0) {
+        if (v >= 0 ) {
             changeArr.push([cid[i][0], v]);
         }
     }
@@ -117,12 +43,12 @@ function checkCashRegister(price, cash, cid) {
 
     if (avi < change) {
         return {status: "INSUFFICIENT_FUNDS", change: []};
-    }
+    } 
 
-    return {status: "OPEN", change: changeArr};
+  if(totalCid > 2){
+    return {status: "OPEN", change: changeArr.filter(a => a[1] > 0)};
+  } else if(totalCid === change2){ 
+    return {status: "CLOSED", change: changeArr.reverse()};
+  }
+    
 }
-
-
-
-
-console.log(checkCashRegister(19.5, 20, [["PENNY", 0.5], ["NICKEL", 0], ["DIME", 0], ["QUARTER", 0], ["ONE", 0], ["FIVE", 0], ["TEN", 0], ["TWENTY", 0], ["ONE HUNDRED", 0]])); 
