@@ -121,3 +121,75 @@ class ToDo extends React.Component {
     );
   }
 };
+
+
+
+React: Use Default Props
+const ShoppingCart = (props) => {
+  return (
+    <div>
+      <h1>Shopping Cart Component</h1>
+    </div>
+  )
+};
+// change code below this line
+ShoppingCart.defaultProps = {
+  items: 0
+}
+
+
+
+Override Default Props
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+}
+
+Items.defaultProps = {
+  quantity: 0
+}
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    { /* change code below this line */ }
+    return <Items quantity={10}/>
+    { /* change code above this line */ }
+  }
+};
+
+
+
+React: Use PropTypes to Define the Props You Expect
+
+Note: As of React v15.5.0, PropTypes is imported independently from React, like this:
+
+import React, { PropTypes } from 'react';
+
+
+
+const Items = (props) => {
+  return <h1>Current Quantity of Items in Cart: {props.quantity}</h1>
+};
+
+// change code below this line
+Items.propTypes = {
+  quantity: PropTypes.number.isRequired
+}
+// change code above this line
+
+Items.defaultProps = {
+  quantity: 0
+};
+
+
+
+class ShoppingCart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return <Items />
+  }
+};
