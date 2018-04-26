@@ -252,6 +252,7 @@ class ResetPassword extends React.Component {
 
 
 
+React: Review Using Props with Stateless Functional Components
 
 A stateless functional component is any function you write which accepts props and returns JSX. A stateless component, on the other hand, is a class that extends React.Component, but does not use internal state (covered in the next challenge). Finally, a stateful component is any component that does maintain its own internal state. You may see stateful components referred to simply as components or React components.
 
@@ -293,5 +294,24 @@ Camper.defaultProps = {
 
 
 
-React: Review Using Props with Stateless Functional Components
+
+React: Create a Stateful Component
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    // initialize state here
+this.state={
+  name:"Oyelowo"
+}
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.name}</h1>
+      </div>
+    );
+  }
+};
+
+
 
