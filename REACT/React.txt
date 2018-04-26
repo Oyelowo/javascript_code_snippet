@@ -193,3 +193,105 @@ class ShoppingCart extends React.Component {
     return <Items />
   }
 };
+
+
+React: Use the Lifecycle Method componentWillMount
+
+
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+    // change code below this line
+console.log("Made way");
+    // change code above this line
+  }
+  render() {
+    return <div />
+  }
+};
+
+
+
+class ReturnTempPassword extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+            { /* change code below this line */ }
+            <p>Your temporary password is: <strong>{this.props.tempPassword}</strong></p>
+            { /* change code above this line */ }
+        </div>
+    );
+  }
+};
+
+class ResetPassword extends React.Component {
+  constructor(props) {
+    super(props);
+
+  }
+  render() {
+    return (
+        <div>
+          <h2>Reset Password</h2>
+          <h3>We've generated a new temporary password for you.</h3>
+          <h3>Please reset this password from your account settings ASAP.</h3>
+          { /* change code below this line */ }
+<ReturnTempPassword tempPassword='oyelowoy' />
+          { /* change code above this line */ }
+        </div>
+    );
+  }
+};
+
+
+
+
+
+A stateless functional component is any function you write which accepts props and returns JSX. A stateless component, on the other hand, is a class that extends React.Component, but does not use internal state (covered in the next challenge). Finally, a stateful component is any component that does maintain its own internal state. You may see stateful components referred to simply as components or React components.
+
+class CampSite extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <Camper />
+      </div>
+    );
+  }
+};
+
+
+
+// change code below this line
+
+class Camper extends React.Component {
+  constructor(props){
+    super(props);
+  }
+  render(){
+    return (
+      <p>{this.props.name}</p>
+    );
+  }
+};
+
+Camper.propTypes = {
+  name : PropTypes.string.isRequired
+}
+
+Camper.defaultProps = {
+  name: 'CamperBot'
+}
+
+
+
+React: Review Using Props with Stateless Functional Components
+
