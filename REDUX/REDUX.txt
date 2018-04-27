@@ -174,3 +174,42 @@ const logoutUser = () => {
     type: LOGOUT
   }
 };
+
+
+
+
+
+
+
+Redux: Register a Store Listener
+const ADD = 'ADD';
+
+const reducer = (state = 0, action) => {
+  switch(action.type) {
+    case ADD:
+      return state + 1;
+    default:
+      return state;
+  }
+};
+
+const store = Redux.createStore(reducer);
+
+// global count variable:
+let count = 0;
+
+// change code below this line
+store.subscribe(()=>count++)
+
+/*can also be written in es5 format as:
+ store.subscribe(function() {
+  return count++;
+} )*/
+// change code above this line
+
+store.dispatch({type: ADD});
+console.log(count);
+store.dispatch({type: ADD});
+console.log(count);
+store.dispatch({type: ADD});
+console.log(count);
