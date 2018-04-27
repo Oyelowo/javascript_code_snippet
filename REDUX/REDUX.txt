@@ -7,3 +7,31 @@ const reducer = (state = 5) => {
 // For example: Redux.createStore()
 // Define the store here:
 const store = Redux.createStore(reducer)
+
+
+
+Redux: Get State from the Redux Store
+const store = Redux.createStore(
+  (state = 5) => state
+);
+
+// change code below this line
+currentState = store.getState();
+
+
+
+Redux: Define a Redux Action
+// Define an action here:
+const action = {
+  type: 'LOGIN'
+}
+
+
+
+Redux: Define an Action Creator
+const action = {
+  type: 'LOGIN'
+}
+// Define an action creator here:
+actionCreator = () => action
+
