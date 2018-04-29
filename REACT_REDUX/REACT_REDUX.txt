@@ -207,15 +207,14 @@ render(){
 
 
 React and Redux: Map State to Props
-// Happy Coding!
+// change code below this line
 const state = [];
 
 // change code below this line
-Alternative
 mapStateToProps = (state) =>({messages: state})
 
 
-/*
+/* Alternative
 const mapStateToProps = (state) => {
   return {
   	messages: state
