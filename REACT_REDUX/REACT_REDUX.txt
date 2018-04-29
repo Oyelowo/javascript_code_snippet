@@ -221,3 +221,24 @@ const mapStateToProps = (state) => {
   }
 };
 */
+
+
+
+
+
+React and Redux: Map Dispatch to Props
+const addMessage = (message) => {
+  return {
+    type: 'ADD',
+    message: message
+  }
+};
+
+// change code below this line
+mapDispatchToProps = (dispatch)=>{
+  return{
+ submitNewMessage: function(message) {
+   dispatch(addMessage(message));
+ }
+}}
+
