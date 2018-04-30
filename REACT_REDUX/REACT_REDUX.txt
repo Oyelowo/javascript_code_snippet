@@ -12,8 +12,8 @@ class DisplayMessages extends React.Component {
   // change code above this line
   render() {
     return <div />
-  }
-};
+   }
+}; 
 
 
 
