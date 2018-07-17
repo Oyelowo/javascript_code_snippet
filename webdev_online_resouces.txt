@@ -1,0 +1,36 @@
+font awesome unicodes cheatsheet:
+https://fontawesome.com/cheatsheet
+
+for references:
+http://devdocs.io
+
+for high quality free pictures:
+https://www.pexels.com/
+
+https://material.io/guidelines/patterns/fingerprint.html#
+
+FOR ANIMATE CSS:
+https://cdnjs.com/libraries/animate.css/
+note: from here, you can copy link tag and use different animations
+
+BRAND COLOURS:
+https://brandcolors.net/
+
+material paletter
+
+fonts and other svg for icons:
+https://fontawesome.com/icons/envelope-square?style=solid
+
+box-sizing: border-box
+
+light abstract image(for background image)
+light abstract coral
+
+
+Fervicon generator:
+http://tools.dynamicdrive.com/favicon/
+
+flexible drawing:
+https://inkscape.org/en/release/0.92.2/
+
+

@@ -1,0 +1,103 @@
+RESPONSIVE GRID CSS:
+This makes the columns always fit the screen, no matter the size. the number of rows also change with increase or decrease in screen size.
+
+.container{
+display: grid;
+grid-gap: 5px;
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+
+This ensures that all rows are 100px;
+.container{
+display: grid;
+grid-gap: 5px;
+grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
+grid-auto-rows: 100px;
+}
+
+in addition, using the below, ensures that the specific element can still change position but span across two columns
+.horizontal{
+grid-column: auto/span 2;
+}
+
+or simply:
+.horizontal{
+grid-column: span 2;
+}
+
+if the below is used instead of the above: the element(s) will always start from the first column to the second and can also distort the entire grid system by creating empty space in other places
+.horizontal{
+grid-column: 1/3;
+}
+
+
+Still, if the above is used, some space might be left. to avoid this: use the grid-auto-flow:dense. that is:
+.container{
+display: grid;
+grid-gap: 5px;
+grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
+grid-auto-rows: 100px;
+grid-auto-flow: dense;
+}
+
+
+This makes the middle row responsive
+.container{
+height: 100%;
+display: grid;
+grid-gap: 3px;
+grid-template-columns: repeat(12, 1fr);
+grid-template-rows: 40px auto 40px;
+}
+
+
+letting an element span to the last
+using -1 makes things more flexible, as the item always span to the last even if the number of columns is changed.
+.header{
+grid-column: 1/-1;
+
+
+NAMED LINES:
+.container{
+display: grid;
+grid-gap: 3px;
+grid-template-columns: [main-start] 1fr [content-start] 5fr [main-end];
+grid-template-rows: [main-start] 40px [content-start] 40px [main-end];
+}
+
+.header{
+grid-column: main-start/main-end;
+}
+
+.menu{
+}
+
+.content{
+grid-column: content-start/main-start;
+}
+
+.footer{
+grid-column: main-start/main-end;
+}
+
+The cool thing about usin the hyphen is that, we can even simplify the use of grid-column further:
+The below takes those parts that start with main.
+.header{
+grid-column: main;
+}
+
+.menu{
+}
+
+.content{
+grid-column: content;
+}
+
+.footer{
+grid-column: main;
+}
+
+grid area can also be used in .content class, because it is centered and is boxed in:
+.content{
+grid-area: content;
+}
